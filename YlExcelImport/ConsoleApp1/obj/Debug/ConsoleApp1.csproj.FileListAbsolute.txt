@@ -1,0 +1,12 @@
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\NPOI.dll
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\YlExcelImport.dll
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\bin\Debug\YlExcelImport.pdb
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\obj\Debug\ConsoleApp1.csprojAssemblyReference.cache
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CoreCompileInputs.cache
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+F:\练习\ExcelImport\YlExcelImport\ConsoleApp1\obj\Debug\ConsoleApp1.pdb

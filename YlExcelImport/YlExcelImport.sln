@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YlExcelImport", "YlExcelImport\YlExcelImport.csproj", "{29BB534F-0B27-464E-B759-B856A46118B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{CA500A4D-E076-439E-AFC3-51C08E9151E1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29BB534F-0B27-464E-B759-B856A46118B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29BB534F-0B27-464E-B759-B856A46118B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29BB534F-0B27-464E-B759-B856A46118B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29BB534F-0B27-464E-B759-B856A46118B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA500A4D-E076-439E-AFC3-51C08E9151E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA500A4D-E076-439E-AFC3-51C08E9151E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA500A4D-E076-439E-AFC3-51C08E9151E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA500A4D-E076-439E-AFC3-51C08E9151E1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {920FDA79-8DE7-401D-9335-E158A0B4027A}
+	EndGlobalSection
+EndGlobal

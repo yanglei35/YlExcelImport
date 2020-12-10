@@ -1,0 +1,80 @@
+{
+  "ExcelName": "testExcel",
+  "ExcelType": 1,
+  "FormHeader": {
+    "StartRow": 1,
+    "FormFields": [
+      {
+        "Name": "描述",
+        "Filed": "Descri",
+        "FixedValue": null,
+        "RowIndex": 1,
+        "ColumnsIndex": 2,
+        "ColSpace": 1,
+        "RowSpace": 1,
+        "FontSize": 1,
+        "FontColor": 1,
+        "IsBold": 1,
+        "BackGroundColor": 1,
+        "PreCell": {}
+      }
+    ]
+  },
+  "TableHeader": {
+    "StratRow": 1,
+    "Columns": [
+      {
+        "Name": "一月",
+        "Filed": "Descri",
+        "ChildHeaders": [
+          {
+            "Name": "预计",
+            "Filed": "A"
+          },
+          {
+            "Name": "实际",
+            "Filed": "B"
+          },
+          {
+            "Name": "总量",
+            "Filed": "C"
+          }
+        ]
+      },
+      {
+        "Name": "二月",
+        "Filed": "Descri",
+        "ChildHeaders": [
+          {
+            "Name": "预计",
+            "Filed": "A"
+          },
+          {
+            "Name": "实际",
+            "Filed": "B"
+          },
+          {
+            "Name": "总量",
+            "Filed": "C"
+          }
+        ]
+      },
+      {
+        "Name": "三月",
+        "Filed": "Descri",
+        "ChildHeaders": []
+      }
+
+
+    ]
+  }
+
+
+}
+
+
+
+
+
+
+
