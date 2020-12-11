@@ -8,15 +8,6 @@ namespace YlExcelImport.Models
 {
     public class BaseCell
     {
-        /// <summary>
-        /// 占据几列
-        /// </summary>
-        public int ColSpace { get; set; }
-
-        /// <summary>
-        /// 占据几行
-        /// </summary>
-        public int RowSpace { get; set; }
 
         /// <summary>
         /// 名称
@@ -34,14 +25,14 @@ namespace YlExcelImport.Models
         public object FixedValue { get; set; }
 
         /// <summary>
-        /// 开始行
-        /// </summary>
-        public int RowIndex { get; set; }
-
-        /// <summary>
-        /// 开始列
+        /// 列号
         /// </summary>
         public int ColumnsIndex { get; set; }
+
+        /// <summary>
+        /// 行号
+        /// </summary>
+        public int RowIndex { get; set; }
 
         /// <summary>
         /// 单元格样式

@@ -68,7 +68,16 @@
     "StratRow": 8,
     "StratColumn": 2,
     "HasBorder": "true",
+    "BackGroundColor": 17,
+    "FontColor": 10,
+    "FontSize": 25,
+    "IsBold": true,
     "Columns": [
+      {
+        "Name": "测试",
+        "OrderNum": 1
+
+      },
       {
         "Name": "一月",
         "OrderNum": 1,
@@ -91,8 +100,13 @@
         ]
       },
       {
+        "Name": "工程",
+        "OrderNum": 2
+
+      },
+      {
         "Name": "二月",
-        "OrderNum": 2,
+        "OrderNum": 3,
         "ChildHeaders": [
           {
             "Name": "预计",
@@ -110,8 +124,8 @@
       },
       {
         "Name": "三月",
-        "OrderNum": 3,
-        "ChildHeaders": null
+        "OrderNum": 4,
+        "ChildHeaders": []
       }
     ]
   }

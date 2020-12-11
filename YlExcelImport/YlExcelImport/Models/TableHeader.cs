@@ -24,6 +24,28 @@ namespace YlExcelImport.Models
         public bool HasBorder { get; set; }
 
         /// <summary>
+        /// 背景色
+        /// </summary>
+        public short BackGroundColor { get; set; }
+
+        /// <summary>
+        /// 字体颜色
+        /// </summary>
+        public short FontColor { get; set; }
+
+        /// <summary>
+        /// 字体大小
+        /// </summary>
+        public short FontSize { get; set; }
+
+        /// <summary>
+        /// 是否加粗
+        /// </summary>
+        public bool IsBold { get; set; }
+
+
+
+        /// <summary>
         /// 字段集合
         /// </summary>
         public List<HeaderCell> Columns { get; set; }

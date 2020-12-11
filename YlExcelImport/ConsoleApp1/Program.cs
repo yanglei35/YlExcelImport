@@ -13,7 +13,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             Tem te = new Tem();
-            var con = te.GetExcelConfig("ExcelConfig1.json");
+            var con = te.GetExcelConfig("ExcelConfig.json");
             var work = te.FormTable(con);
             using (FileStream url = File.OpenWrite(@"F:\练习\ExcelImport\Tes\Test.xls"))
             {
