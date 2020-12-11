@@ -12,14 +12,9 @@ namespace YlExcelImport.Models
     public class FormHeader
     {
         /// <summary>
-        /// 开始行
-        /// </summary>
-        public int StratRow { get; set; }
-
-        /// <summary>
         /// 字段集合
         /// </summary>
-        public List<FormCell> FormFields { get; set; }
+        public List<FormItem> FormFields { get; set; }
         
     }
 }

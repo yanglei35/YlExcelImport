@@ -15,7 +15,7 @@ namespace ConsoleApp1
             Tem te = new Tem();
             var con = te.GetExcelConfig("ExcelConfig.json");
             var work = te.FormTable(con);
-            using (FileStream url = File.OpenWrite(@"F:\练习\ExcelImport\Tes\Test.xls"))
+            using (FileStream url = File.OpenWrite(@"../../../../Tes/Test.xls"))
             {
                 //导出Excel文件
                 work.Write(url);

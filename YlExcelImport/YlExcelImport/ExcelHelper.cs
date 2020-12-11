@@ -33,15 +33,15 @@ namespace YlExcelImport
             {
                 throw new Exception("请配置json文件中的‘FormFields’项");
             }
-            var row = sheet.CreateRow(formHeader.StratRow);
+           // var row = sheet.CreateRow(formHeader.StratRow);
 
             //获取表单表格需要占据的行号
-          var rowIndexList=  formHeader.FormFields.Select(s => s.RowIndex).Distinct().ToList();
-            //创建行
-            rowIndexList.ForEach(index =>
-            {
-                sheet.CreateRow(index);
-            });
+          //var rowIndexList=  formHeader.FormFields.Select(s => s.RowIndex).Distinct().ToList();
+          //  //创建行
+          //  rowIndexList.ForEach(index =>
+          //  {
+          //      sheet.CreateRow(index);
+          //  });
 
             //创建单元格
             formHeader.FormFields.ForEach(item =>
@@ -50,39 +50,159 @@ namespace YlExcelImport
             });
 
             //合并单元格
-
+            formHeader.FormFields.ForEach(item =>
+            {
+                if (item.ColSpace > 0)
+                {
+                    sheet.AddMergedRegion(new CellRangeAddress(item.RowIndex, item.RowIndex, item.ColumnsIndex, item.ColumnsIndex + item.ColSpace));
+                }
+                if (item.RowSpace > 0)
+                {
+                    sheet.AddMergedRegion(new CellRangeAddress(item.RowIndex, item.RowIndex + item.RowSpace, item.ColumnsIndex, item.ColumnsIndex));
+                }
+            });
 
         }
-        public void CreateFormCell(FormCell formCell)
+        public void CreateFormCell(FormItem formItem)
         {
-            var row = sheet.GetRow(formCell.RowIndex);
-            ICell preCell;  //标题
-            //创建头
-            if (formCell.PreCell != null)
+            var row = sheet.CreateRow(formItem.RowIndex);
+            var textcell = CreateCell(row, formItem);
+            ICellStyle textStyle = null;
+            if (formItem.CellStyle != null)
             {
-                preCell = CreateCell(row,formCell.PreCell);
+                textStyle = CreateCellStyle(formItem.CellStyle);
             }
             else
             {
-                preCell = CreateCell(row, formCell.ColumnsIndex - 1);
-                var style = CreateCellStyle(formCell.CellStyle);
-                preCell.CellStyle = style;
+                textStyle = CreateDefaultCellStyle();
             }
-            preCell.SetCellType(CellType.String);
-            preCell.SetCellValue(formCell.Name);
-            //创建值部分
-            formCell.ColumnsIndex = formCell.ColumnsIndex;
-            var cell = CreateCell(row,formCell);
-            string val = "";
-            if (formCell.FixedValue != null)
+            textcell.CellStyle = textStyle;
+            textcell.SetCellType(CellType.String);
+            textcell.SetCellValue(formItem.Name);
+            if (formItem.RowSpace > 0 && formItem.ColSpace == 0) //只夸行
             {
-                val = formCell.FixedValue.ToString();
+                for (var i = 1; i < formItem.RowSpace; i++)
+                {
+                    //为合并时样式问题处理
+                    var temRow = sheet.CreateRow(formItem.RowIndex + i);
+                    var temCell = CreateCell(temRow, formItem);
+                    temCell.CellStyle = textStyle;
+                }
             }
-            else
+            if (formItem.ColSpace > 0 && formItem.RowSpace ==0)//只夸列
             {
-                val = GetFiledValue(formCell.Filed);
+                for (var i = 1; i < formItem.ColSpace; i++)
+                {
+                    //为合并时样式问题处理
+                    var temCell = CreateCell(row, formItem.ColumnsIndex + i);
+                    temCell.CellStyle = textStyle;
+                }
             }
-            cell.SetCellValue(val);
+            if (formItem.ColSpace > 0 && formItem.Orientation > 0) //行列都夸
+            {
+                for (var i = 1; i < formItem.RowSpace; i++)
+                {
+                    //为合并时样式问题处理
+                    var temRow = sheet.CreateRow(formItem.RowIndex + i);
+                    for (var j = 1; j < formItem.ColSpace; j++)
+                    {
+                        var temCell = CreateCell(temRow, formItem.ColumnsIndex + j);
+                        temCell.CellStyle = textStyle;
+                    }
+                }
+            }
+            if (formItem.Orientation > 1) //上下结构
+            {
+                var index = (formItem.RowSpace==0? formItem.RowIndex+1: formItem.RowIndex + formItem.RowSpace+1);
+                var valueRow = sheet.CreateRow(index);
+                var valueCell = CreateCell(valueRow,formItem.ColumnsIndex);
+                ICellStyle valuStyle = textStyle;
+                if (formItem.ValueCellConfig != null)
+                {
+                    if( formItem.ValueCellConfig.CellStyle != null)
+                    {
+                        valuStyle = CreateCellStyle(formItem.ValueCellConfig.CellStyle);
+                    }
+                   
+                    if (formItem.ValueCellConfig.RowSpace > 0)
+                    {
+                        for (var i = 1; i < formItem.ValueCellConfig.RowSpace; i++)
+                        {
+                            //为合并时样式问题处理
+                            var temRow = sheet.CreateRow(index + i);
+                            var temCell = CreateCell(temRow, formItem);
+                            temCell.CellStyle = valuStyle;
+                        }
+                    }
+                }
+                valueCell.SetCellType(CellType.String);
+                string val = "";
+                if (formItem.FixedValue != null)
+                {
+                    val = formItem.FixedValue.ToString();
+                }
+                else
+                {
+                    val = GetFiledValue(formItem.Filed);
+                }
+                valueCell.SetCellValue( val);
+
+                if (formItem.ColSpace > 0)
+                {
+                    for (var i = 1; i < formItem.ColSpace; i++)
+                    {
+                        //为合并时样式问题处理
+                        var temCell = CreateCell(valueRow, formItem.ColumnsIndex + i);
+                        temCell.CellStyle = valuStyle;
+                    }
+                }
+            }
+            else //左右结构
+            {
+                var valueCell = CreateCell(row, formItem.ColumnsIndex+1);
+                ICellStyle valuStyle = textStyle;
+                if (formItem.ValueCellConfig != null)
+                {
+                    if (formItem.ValueCellConfig.CellStyle != null)
+                    {
+                        valuStyle = CreateCellStyle(formItem.ValueCellConfig.CellStyle);
+                    }
+
+                    if (formItem.ValueCellConfig.ColSpace > 0)
+                    {
+                        for (var i = 1; i < formItem.ValueCellConfig.ColSpace; i++)
+                        {
+                            var temCell = CreateCell(row, formItem.ColumnsIndex + 1+i);
+                            temCell.CellStyle = valuStyle;
+                        }
+                    }
+                }
+                textcell.SetCellType(CellType.String);
+                string val = "";
+                if (formItem.FixedValue != null)
+                {
+                    val = formItem.FixedValue.ToString();
+                }
+                else
+                {
+                    val = GetFiledValue(formItem.Filed);
+                }
+                textcell.SetCellValue(val);
+
+                if (formItem.RowSpace > 0)
+                {
+                    for (var i = 1; i < formItem.RowSpace; i++)
+                    {
+                        //为合并时样式问题处理
+                        var temRow = sheet.CreateRow(formItem.RowIndex + i);
+                        var temCell = CreateCell(temRow, formItem.ColumnsIndex + 1 + i);
+                        temCell.CellStyle = valuStyle;
+                    }
+                }
+            }
+            
+            
+            
         }
 
 

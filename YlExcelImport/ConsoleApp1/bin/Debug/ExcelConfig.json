@@ -2,18 +2,17 @@
   "ExcelName": "testExcel",
   "ExcelType": 1,
   "FormHeader": {
-
-    "StartRow": 1,
+    "Orientation": 1,
     "FormFields": [
       {
-        "Name": "ABc",
-        "Filed": "A",
-        "FixedValue": null,
+        "Orientation": 1,
         "RowIndex": 1,
         "ColumnsIndex": 1,
-        "ColSpace": 1,
-        "RowSpace": 1,
-        "PreCell": null,
+        "FixedValue": "我是固定值",
+        "Name": "值占5列",
+        "Filed": "A",
+        "ColSpace": 2,
+        "RowSpace": 3,
         "CellStyle": {
           "FontSize": 11,
           "FontColor": 13,
@@ -22,50 +21,26 @@
           "Height": 50,
           "Width": 100,
           "Border": 1
-        }
-      },
-      {
-        "Name": "sdfsf的方式",
-        "Filed": "B",
-        "FixedValue": null,
-        "RowIndex": 2,
-        "ColumnsIndex": 2,
-        "ColSpace": 1,
-        "RowSpace": 1,
-        "PreCell": null,
-        "CellStyle": {
-          "FontSize": 18,
-          "FontColor": 13,
-          "IsBold": 1,
-          "BackGroundColor": 11,
-          "Height": 50,
-          "Width": 100,
-          "Border": 1
-        }
-      },
-      {
-        "Name": "计算分",
-        "Filed": "C",
-        "FixedValue": null,
-        "RowIndex": 3,
-        "ColumnsIndex": 3,
-        "ColSpace": 1,
-        "RowSpace": 1,
-        "PreCell": null,
-        "CellStyle": {
-          "FontSize": 18,
-          "FontColor": 13,
-          "IsBold": 1,
-          "BackGroundColor": 11,
-          "Height": 50,
-          "Width": 100,
-          "Border": 1
+        },
+        "ValueCellConfig": {
+          "CellStyle": {
+            "FontSize": 11,
+            "FontColor": 13,
+            "IsBold": 1,
+            "BackGroundColor": 11,
+            "Height": 50,
+            "Width": 100,
+            "Border": 1
+          },
+          "ColSpace": 5,
+          "RowSpace": 1
         }
       }
+      
     ]
   },
   "TableHeader": {
-    "StratRow": 8,
+    "StratRow": 50,
     "StratColumn": 2,
     "HasBorder": "true",
     "BackGroundColor": 17,
@@ -130,10 +105,3 @@
     ]
   }
 }
-
-
-
-
-
-
-
