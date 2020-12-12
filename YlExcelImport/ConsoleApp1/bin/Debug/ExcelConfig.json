@@ -5,13 +5,13 @@
     "Orientation": 1,
     "FormFields": [
       {
-        "Orientation": 1,
+        "Orientation": 2,
         "RowIndex": 1,
         "ColumnsIndex": 1,
-        "FixedValue": "我是固定值",
         "Name": "值占5列",
         "Filed": "A",
-        "ColSpace": 2,
+        "FixedValue": "我是固定值",
+        "ColSpace": 1,
         "RowSpace": 3,
         "CellStyle": {
           "FontSize": 11,

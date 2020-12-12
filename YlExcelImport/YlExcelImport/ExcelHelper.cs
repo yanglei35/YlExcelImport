@@ -33,33 +33,42 @@ namespace YlExcelImport
             {
                 throw new Exception("请配置json文件中的‘FormFields’项");
             }
-           // var row = sheet.CreateRow(formHeader.StratRow);
+            // var row = sheet.CreateRow(formHeader.StratRow);
 
             //获取表单表格需要占据的行号
-          //var rowIndexList=  formHeader.FormFields.Select(s => s.RowIndex).Distinct().ToList();
-          //  //创建行
-          //  rowIndexList.ForEach(index =>
-          //  {
-          //      sheet.CreateRow(index);
-          //  });
+            //var rowIndexList=  formHeader.FormFields.Select(s => s.RowIndex).Distinct().ToList();
+            //  //创建行
+            //  rowIndexList.ForEach(index =>
+            //  {
+            //      sheet.CreateRow(index);
+            //  });
 
             //创建单元格
+            //formHeader.FormFields.ForEach(item =>
+            //{
+            //    CreateFormCell(item);
+            //});
+            int startRow = 0, endRow = 0, startColumn = 0, endColunmn = 0;
+            // //创建单元格 合并单元格
             formHeader.FormFields.ForEach(item =>
             {
                 CreateFormCell(item);
-            });
+                //var tuple = new Tuple<int, int, int, int>(item.RowIndex, item.RowIndex, item.ColumnsIndex, item.ColumnsIndex);
+                //startRow = endRow = item.RowIndex;
+                //startColumn = endColunmn = item.ColumnsIndex;
 
-            //合并单元格
-            formHeader.FormFields.ForEach(item =>
-            {
-                if (item.ColSpace > 0)
-                {
-                    sheet.AddMergedRegion(new CellRangeAddress(item.RowIndex, item.RowIndex, item.ColumnsIndex, item.ColumnsIndex + item.ColSpace));
-                }
-                if (item.RowSpace > 0)
-                {
-                    sheet.AddMergedRegion(new CellRangeAddress(item.RowIndex, item.RowIndex + item.RowSpace, item.ColumnsIndex, item.ColumnsIndex));
-                }
+                //if (item.ColSpace > 0)
+                //{
+                //    endColunmn = endColunmn + item.ColSpace;
+                //}
+                //if (item.RowSpace > 0)
+                //{
+                //    endRow = endRow + item.RowSpace;
+                //}
+                //if (item.RowSpace > 0 || item.ColSpace > 0)
+                //{
+                //    sheet.AddMergedRegion(new CellRangeAddress(startRow, endRow, startColumn, endColunmn));
+                //}
             });
 
         }
@@ -79,60 +88,34 @@ namespace YlExcelImport
             textcell.CellStyle = textStyle;
             textcell.SetCellType(CellType.String);
             textcell.SetCellValue(formItem.Name);
-            if (formItem.RowSpace > 0 && formItem.ColSpace == 0) //只夸行
+            int startRow = 0, endRow = 0, startColumn = 0, endColunmn = 0;
+            startRow = endRow = formItem.RowIndex;
+            startColumn = endColunmn = formItem.ColumnsIndex;
+
+            if (formItem.ColSpace > 0)
             {
-                for (var i = 1; i < formItem.RowSpace; i++)
-                {
-                    //为合并时样式问题处理
-                    var temRow = sheet.CreateRow(formItem.RowIndex + i);
-                    var temCell = CreateCell(temRow, formItem);
-                    temCell.CellStyle = textStyle;
-                }
+                endColunmn = endColunmn + formItem.ColSpace;
             }
-            if (formItem.ColSpace > 0 && formItem.RowSpace ==0)//只夸列
+            if (formItem.RowSpace > 0)
             {
-                for (var i = 1; i < formItem.ColSpace; i++)
-                {
-                    //为合并时样式问题处理
-                    var temCell = CreateCell(row, formItem.ColumnsIndex + i);
-                    temCell.CellStyle = textStyle;
-                }
+                endRow = endRow + formItem.RowSpace;
             }
-            if (formItem.ColSpace > 0 && formItem.Orientation > 0) //行列都夸
+            if (formItem.RowSpace > 0 || formItem.ColSpace > 0)
             {
-                for (var i = 1; i < formItem.RowSpace; i++)
-                {
-                    //为合并时样式问题处理
-                    var temRow = sheet.CreateRow(formItem.RowIndex + i);
-                    for (var j = 1; j < formItem.ColSpace; j++)
-                    {
-                        var temCell = CreateCell(temRow, formItem.ColumnsIndex + j);
-                        temCell.CellStyle = textStyle;
-                    }
-                }
+                sheet.AddMergedRegion(new CellRangeAddress(startRow, endRow, startColumn, endColunmn));
             }
             if (formItem.Orientation > 1) //上下结构
             {
-                var index = (formItem.RowSpace==0? formItem.RowIndex+1: formItem.RowIndex + formItem.RowSpace+1);
-                var valueRow = sheet.CreateRow(index);
-                var valueCell = CreateCell(valueRow,formItem.ColumnsIndex);
+                var rowIndex = (formItem.RowSpace == 0 ? formItem.RowIndex + 1 : formItem.RowIndex + formItem.RowSpace + 1);
+                var valueRow = sheet.CreateRow(rowIndex);
+                var valueCell = CreateCell(valueRow, formItem.ColumnsIndex);
                 ICellStyle valuStyle = textStyle;
+               // valuStyle.FillPattern = FillPattern.NoFill; //不需要与text的颜色填充
                 if (formItem.ValueCellConfig != null)
                 {
-                    if( formItem.ValueCellConfig.CellStyle != null)
+                    if (formItem.ValueCellConfig.CellStyle != null)
                     {
                         valuStyle = CreateCellStyle(formItem.ValueCellConfig.CellStyle);
-                    }
-                   
-                    if (formItem.ValueCellConfig.RowSpace > 0)
-                    {
-                        for (var i = 1; i < formItem.ValueCellConfig.RowSpace; i++)
-                        {
-                            //为合并时样式问题处理
-                            var temRow = sheet.CreateRow(index + i);
-                            var temCell = CreateCell(temRow, formItem);
-                            temCell.CellStyle = valuStyle;
-                        }
                     }
                 }
                 valueCell.SetCellType(CellType.String);
@@ -145,39 +128,27 @@ namespace YlExcelImport
                 {
                     val = GetFiledValue(formItem.Filed);
                 }
-                valueCell.SetCellValue( val);
-
-                if (formItem.ColSpace > 0)
+                valueCell.CellStyle = valuStyle;
+                valueCell.SetCellValue(val);
+                if (formItem.ValueCellConfig != null && formItem.ValueCellConfig.RowSpace > 0)
                 {
-                    for (var i = 1; i < formItem.ColSpace; i++)
-                    {
-                        //为合并时样式问题处理
-                        var temCell = CreateCell(valueRow, formItem.ColumnsIndex + i);
-                        temCell.CellStyle = valuStyle;
-                    }
+                    sheet.AddMergedRegion(new CellRangeAddress(rowIndex, rowIndex + formItem.ValueCellConfig.RowSpace, startColumn, endColunmn));
                 }
             }
             else //左右结构
             {
-                var valueCell = CreateCell(row, formItem.ColumnsIndex+1);
+                var colIndex = (formItem.ColSpace == 0 ? formItem.ColumnsIndex + 1 : formItem.ColumnsIndex + formItem.ColSpace + 1);
+                var valueCell = CreateCell(row, colIndex);
                 ICellStyle valuStyle = textStyle;
+                valuStyle.FillPattern = FillPattern.NoFill; //不需要与text的颜色填充
                 if (formItem.ValueCellConfig != null)
                 {
                     if (formItem.ValueCellConfig.CellStyle != null)
                     {
                         valuStyle = CreateCellStyle(formItem.ValueCellConfig.CellStyle);
                     }
-
-                    if (formItem.ValueCellConfig.ColSpace > 0)
-                    {
-                        for (var i = 1; i < formItem.ValueCellConfig.ColSpace; i++)
-                        {
-                            var temCell = CreateCell(row, formItem.ColumnsIndex + 1+i);
-                            temCell.CellStyle = valuStyle;
-                        }
-                    }
                 }
-                textcell.SetCellType(CellType.String);
+                valueCell.SetCellType(CellType.String);
                 string val = "";
                 if (formItem.FixedValue != null)
                 {
@@ -187,22 +158,13 @@ namespace YlExcelImport
                 {
                     val = GetFiledValue(formItem.Filed);
                 }
-                textcell.SetCellValue(val);
-
-                if (formItem.RowSpace > 0)
+                valueCell.CellStyle = valuStyle;
+                valueCell.SetCellValue(val);
+                if (formItem.ValueCellConfig != null && formItem.ValueCellConfig.ColSpace > 0)
                 {
-                    for (var i = 1; i < formItem.RowSpace; i++)
-                    {
-                        //为合并时样式问题处理
-                        var temRow = sheet.CreateRow(formItem.RowIndex + i);
-                        var temCell = CreateCell(temRow, formItem.ColumnsIndex + 1 + i);
-                        temCell.CellStyle = valuStyle;
-                    }
+                    sheet.AddMergedRegion(new CellRangeAddress(startRow, endRow, colIndex, colIndex + formItem.ValueCellConfig.ColSpace));
                 }
             }
-            
-            
-            
         }
 
 
