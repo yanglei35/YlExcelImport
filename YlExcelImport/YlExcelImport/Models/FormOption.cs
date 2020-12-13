@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace YlExcelImport.Models
 {
-    public class ExcelConfig
+ public  class FormOption
     {
+        /// <summary>
+        /// 字段名
+        /// </summary>
+        public string FildName { get; set; }
 
         /// <summary>
-        /// 表头
+        /// 字段对应的值
         /// </summary>
-        public FormHeader FormHeader { get; set; }
-
-        /// <summary>
-        /// 表格表头
-        /// </summary>
-        public TableHeader TableHeader { get; set; }
-
+        public string FildValue { get; set; }
     }
 }

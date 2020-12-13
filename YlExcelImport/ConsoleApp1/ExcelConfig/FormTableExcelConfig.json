@@ -1,0 +1,140 @@
+{
+  "FormHeader": {
+    "Orientation": 1,
+    "FormFields": [
+      {
+        "Orientation": 1,
+        "Name": "字段名称1",
+        "Field": "A_1",
+        "FixedValue": "",
+        "HasBorder": true,
+        "ColSpace": 2,
+        "RowSpace": 2,
+        "RowIndex": 0,
+        "ColumnsIndex": 0,
+        "CellStyle": {
+          "FontSize": 11,
+          "FontColor": 13,
+          "IsBold": 1,
+          "BackGroundColor": 11,
+          "Border": 1
+        }
+      },
+      {
+        "Orientation": 1,
+        "Name": "字段名称3",
+        "Field": "A_3",
+        "FixedValue": "固定值",
+        "HasBorder": true,
+        "ColSpace": 2,
+        "RowSpace": 2,
+        "RowIndex": 9,
+        "ColumnsIndex": 0,
+        "CellStyle": {
+          "FontSize": 11,
+          "FontColor": 13,
+          "IsBold": 1,
+          "BackGroundColor": 40,
+          "Border": 1
+        }
+      },
+      {
+        "Orientation": 1,
+        "Name": "字段名称2",
+        "Field": "A_2",
+        "FixedValue": "",
+        "HasBorder": true,
+        "ColSpace": 2,
+        "RowSpace": 2,
+        "RowIndex": 3,
+        "ColumnsIndex": 0,
+        "CellStyle": {
+          "FontSize": 11,
+          "FontColor": 13,
+          "IsBold": 1,
+          "BackGroundColor": 51,
+          "Border": 1
+        }
+      },
+      {
+        "Orientation": 1,
+        "Name": "字段名称4",
+        "Field": "A_4",
+        "FixedValue": "",
+        "HasBorder": true,
+        "ColSpace": 2,
+        "RowSpace": 2,
+        "RowIndex": 6,
+        "ColumnsIndex": 0,
+        "CellStyle": {
+          "FontSize": 11,
+          "FontColor": 13,
+          "IsBold": 1,
+          "BackGroundColor": 22,
+          "Border": 1
+        }
+      }
+    ]
+  },
+  "TableHeader": {
+    "StratRow": 12,
+    "StratColumn": 0,
+    "HasBorder": "true",
+    "BackGroundColor": 17,
+    "FontColor": 10,
+    "FontSize": 25,
+    "IsBold": true,
+    "Height": 100,
+    "Columns": [
+      {
+        "Name": "测试",
+        "OrderNum": 1,
+        "Field": "AA",
+        "Width": 20
+      },
+      {
+        "Name": "一月",
+        "OrderNum": 3,
+        "ChildHeaders": [
+          {
+            "Name": "预计",
+            "Field": "BB",
+            "Width": 20,
+            "OrderNum": 1
+          },
+          {
+            "Name": "实际",
+            "Field": "CC",
+            "Width": 20,
+            "OrderNum": 2
+          },
+          {
+            "Name": "总量",
+            "Field": "DD",
+            "Width": 20,
+            "OrderNum": 3
+          }
+        ]
+      },
+      {
+        "Name": "工程",
+        "OrderNum": 2,
+        "Field": "EE",
+        "Width": 20
+      },
+      {
+        "Name": "二月",
+        "OrderNum": 5,
+        "Field": "FF",
+        "Width": 20
+      },
+      {
+        "Name": "三月",
+        "OrderNum": 4,
+        "Field": "GG",
+        "Width": 20,
+        "ChildHeaders": []
+      }
+    ]
+  }
+}

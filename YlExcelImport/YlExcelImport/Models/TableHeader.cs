@@ -43,7 +43,10 @@ namespace YlExcelImport.Models
         /// </summary>
         public bool IsBold { get; set; }
 
-
+        /// <summary>
+        /// 高度
+        /// </summary>
+        public int Height { get; set; } = 15;
 
         /// <summary>
         /// 字段集合

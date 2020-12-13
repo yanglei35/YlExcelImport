@@ -55,14 +55,14 @@
     <Compile Include="Models\CellStyle.cs" />
     <Compile Include="Enum\ColorEnum.cs" />
     <Compile Include="Models\ExcelConfig.cs" />
-    <Compile Include="ExcelHelper.cs" />
+    <Compile Include="ExcelBase.cs" />
     <Compile Include="Enum\ExcelTypeEnum.cs" />
     <Compile Include="Models\FormItem.cs" />
     <Compile Include="Models\FormHeader.cs" />
+    <Compile Include="Models\FormOption.cs" />
     <Compile Include="Models\HeaderCell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\TableHeader.cs" />
-    <Compile Include="Tem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ExcelConfig.json" />

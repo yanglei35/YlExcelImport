@@ -16,6 +16,11 @@ namespace YlExcelImport.Models
         public int Orientation { get; set; } = 1;
 
         /// <summary>
+        /// 是否有边框
+        /// </summary>
+        public bool HasBorder { get; set; } = false;
+
+        /// <summary>
         /// 值
         /// </summary>
         public BaseCell ValueCellConfig { get; set; }

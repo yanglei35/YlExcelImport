@@ -1,0 +1,60 @@
+{
+  "ExcelName": "testExcel",
+  "ExcelType": 1,
+  "TableHeader": {
+    "StratRow": 0,
+    "StratColumn": 2,
+    "HasBorder": "true",
+    "BackGroundColor": 17,
+    "FontColor": 10,
+    "FontSize": 25,
+    "IsBold": true,
+    "Columns": [
+      {
+        "Name": "测试",
+        "OrderNum": 1,
+        "Field": "AA"
+      },
+      {
+        "Name": "一月",
+        "OrderNum": 3,
+        "ChildHeaders": [
+          {
+            "Name": "预计",
+            "Field": "BB",
+            "Width": 120,
+            "OrderNum": 1
+          },
+          {
+            "Name": "实际",
+            "Field": "CC",
+            "Width": 120,
+            "OrderNum": 2
+          },
+          {
+            "Name": "总量",
+            "Field": "DD",
+            "Width": 120,
+            "OrderNum": 3
+          }
+        ]
+      },
+      {
+        "Name": "工程",
+        "OrderNum": 2,
+        "Field": "EE"
+      },
+      {
+        "Name": "二月",
+        "OrderNum": 5,
+        "Field": "FF"
+      },
+      {
+        "Name": "三月",
+        "OrderNum": 4,
+        "Field": "GG",
+        "ChildHeaders": []
+      }
+    ]
+  }
+}

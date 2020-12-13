@@ -17,7 +17,7 @@ namespace YlExcelImport.Models
         /// <summary>
         /// 字段名
         /// </summary>
-        public string Filed { get; set; }
+        public string Field { get; set; }
 
         /// <summary>
         /// 固定值
